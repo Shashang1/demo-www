@@ -1,0 +1,11 @@
+
+const SET_AUTH = "SET_AUTH"
+const GET_AUTH = "GET_AUTH"
+const SET_PROF_PIC = "UPDATE_PROF_PIC"
+const REMOVE_AUTH = "REMOVE_AUTH"
+const AUTH_REMOVED = "AUTH_REMOVED"
+const NO_AUTH = "NO_AUTH"
+const MSG = "MSG"
+const BKURL = "http://localhost:5000/"
+
+export {SET_AUTH, GET_AUTH, SET_PROF_PIC, REMOVE_AUTH,AUTH_REMOVED, NO_AUTH, MSG, BKURL};

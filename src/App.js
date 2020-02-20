@@ -1,0 +1,48 @@
+import React from 'react';
+import './App.css';
+import Login from './containers/Login'
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import Dashboard from './containers/Dashboard';
+import Loading from './components/loading'
+import Header from './components/header'
+import History from "./containers/History"
+import CookieMsg from './components/cookieMsg';
+
+function App(props) {
+  if(props.isLoading){
+    return (<Loading />)
+  }
+
+  return (
+    <div className="container">
+    <Router>
+    <Header isLogin={props.isLogin}/>
+    <CookieMsg />
+        <Route path= "/" exact>
+          {props.isLogin?(<Redirect to="/dashboard"/>):(" ")}
+          <Login status={props.status}/>
+        </Route>
+        <Route path= "/dashboard" exact>
+          <Dashboard />
+        </Route>
+        <Route path= "/history" exact>
+          <History />
+        </Route>
+        <Route path= "/search" exact>
+          <Login />
+        </Route>
+        {/* <Route path= "/logout">
+          <Logout/>
+        </Route> */}
+    </Router>
+    </div>
+  )
+}
+
+const mapStateToProps = (state)=>{
+  return ({isLoading:state.isLoading, isLogin:state.isLogin, status:state.invalid})
+} 
+
+
+export default connect(mapStateToProps)(App);
