@@ -9,8 +9,9 @@ function* watchRequestAuth(){
 }
 
 function* watchRequestRemoveAuth(){
-  yield takeEvery(REMOVE_AUTH, function* (){
-    yield call(queryGet.bind(null, BKURL+"logout"))
+  yield takeEvery(REMOVE_AUTH, function* ({token}){
+    yield call(queryGet.bind(null, BKURL+"logout", token))
+
   })
 }
 export default function* rootSaga(){

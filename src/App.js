@@ -8,6 +8,7 @@ import Loading from './components/loading'
 import Header from './components/header'
 import History from "./containers/History"
 import CookieMsg from './components/cookieMsg';
+import Search from './components/search';
 
 function App(props) {
   if(props.isLoading){
@@ -20,7 +21,7 @@ function App(props) {
     <Header isLogin={props.isLogin}/>
     <CookieMsg />
         <Route path= "/" exact>
-          {props.isLogin?(<Redirect to="/dashboard"/>):(" ")}
+          {props.isLogin?(<Redirect to="/dashboard"/>):("")}
           <Login status={props.status}/>
         </Route>
         <Route path= "/dashboard" exact>
@@ -30,7 +31,10 @@ function App(props) {
           <History />
         </Route>
         <Route path= "/search" exact>
-          <Login />
+          <Search />
+        </Route>
+        <Route path="/upload" exact>
+          {props.isLogin?(<h2>Under processing</h2>):(<Redirect to="/"/>)}
         </Route>
         {/* <Route path= "/logout">
           <Logout/>

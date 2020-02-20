@@ -13,8 +13,8 @@ function* query(endpoint, item){
     yield put({type:NO_AUTH})
   }
 }
-function* queryGet(endpoint){
-  yield axios.get(endpoint).then(res=>res)
+function* queryGet(endpoint, token){
+  yield axios.get(endpoint, {headers:{'Authorization':'Bearer '+token}}).then(res=>{console.log(res);return res})
   yield put({type:AUTH_REMOVED, isLogin:false})
 }
 

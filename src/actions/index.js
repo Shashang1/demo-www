@@ -7,8 +7,9 @@ const getAuth = (obj) =>({
   payload:obj
 })
 
-const removeAuth = () =>({
-  type:REMOVE_AUTH
+const removeAuth = (token) =>({
+  type:REMOVE_AUTH,
+  token:token
 })
 
 export {getAuth, removeAuth}
