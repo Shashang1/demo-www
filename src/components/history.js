@@ -20,7 +20,6 @@ class History extends React.Component{
 
   render(){
     if(this.props.data && this.state.data.data){
-      console.log(this.state.data.data)
       return(<ShowHistory data= {this.state.data.data}/>)
     }
     else if(this.props.data){

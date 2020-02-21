@@ -9,6 +9,9 @@ import Header from './components/header'
 import History from "./containers/History"
 import CookieMsg from './components/cookieMsg';
 import Search from './components/search';
+import UserInfo from './components/userInfo'
+import Seen from './components/Seen';
+import Signup from './components/signup';
 
 function App(props) {
   if(props.isLoading){
@@ -17,9 +20,9 @@ function App(props) {
 
   return (
     <div className="container">
-    <Router>
-    <Header isLogin={props.isLogin}/>
-    <CookieMsg />
+      <Router>
+        <Header isLogin={props.isLogin}/>
+        <CookieMsg />
         <Route path= "/" exact>
           {props.isLogin?(<Redirect to="/dashboard"/>):("")}
           <Login status={props.status}/>
@@ -33,13 +36,17 @@ function App(props) {
         <Route path= "/search" exact>
           <Search />
         </Route>
-        <Route path="/upload" exact>
-          {props.isLogin?(<h2>Under processing</h2>):(<Redirect to="/"/>)}
-        </Route>
-        {/* <Route path= "/logout">
-          <Logout/>
+        {/* <Route path="/upload" exact>
+          {props.isLogin?(<AddImage />):(<Redirect to="/"/>)}
         </Route> */}
-    </Router>
+        <Route path= {`/user/:id`} component={UserInfo}/>
+        <Route path= "/seen" >
+          {props.isLogin?(<Seen />):(<Redirect to="/"/>)}
+        </Route>
+        <Route path= "/signup" >
+          {props.isLogin?(<Redirect to="/dashboard"/>):(<Signup />)}
+        </Route>
+      </Router>
     </div>
   )
 }

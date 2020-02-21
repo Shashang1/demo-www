@@ -3,9 +3,9 @@ import SearchResponseList from './SearchResponseList';
 
 const SearchResult = (props) => {
   return (
-    <ul className="list-group">
+    <div>
       {props.data.map((item, index)=>(<SearchResponseList item={item} key={index}/>))}
-    </ul>
+    </div>
   )
 }
 

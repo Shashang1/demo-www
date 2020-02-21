@@ -2,7 +2,6 @@ import React from 'react';
 import HistoryList from './historyList';
 
 const ShowHistory = (props) => {
-  console.log(props.data)
   return (
     <div>
       <div className="historylist p-3">

@@ -20,6 +20,9 @@ const Header = (props)=> {
           <li className= "nav-item">
             <Link className= 'nav-link' to="/upload">Upload picture</Link>
           </li>
+          <li className= "nav-item">
+            <Link className= 'nav-link' to="/seen">Profile seen</Link>
+          </li>
           <li className= "nav-item logout">
             <Logout />
           </li>
