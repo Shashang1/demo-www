@@ -12,6 +12,8 @@ import Search from './components/search';
 import UserInfo from './components/userInfo'
 import Seen from './components/Seen';
 import Signup from './components/signup';
+import AddImage from './components/AddImage'; 
+import Container from '@material-ui/core/Container'
 
 function App(props) {
   if(props.isLoading){
@@ -19,7 +21,7 @@ function App(props) {
   }
 
   return (
-    <div className="container">
+    <Container maxWidth="lg">
       <Router>
         <Header isLogin={props.isLogin}/>
         <CookieMsg />
@@ -36,24 +38,25 @@ function App(props) {
         <Route path= "/search" exact>
           <Search />
         </Route>
-        {/* <Route path="/upload" exact>
+        <Route path="/upload" exact>
           {props.isLogin?(<AddImage />):(<Redirect to="/"/>)}
-        </Route> */}
+        </Route>
         <Route path= {`/user/:id`} component={UserInfo}/>
         <Route path= "/seen" >
           {props.isLogin?(<Seen />):(<Redirect to="/"/>)}
         </Route>
         <Route path= "/signup" >
-          {props.isLogin?(<Redirect to="/dashboard"/>):(<Signup />)}
+          {props.isLogin?(<Redirect to="/dashboard"/>):(<Signup />)}  
         </Route>
       </Router>
-    </div>
+      </Container>
   )
 }
 
 const mapStateToProps = (state)=>{
   return ({isLoading:state.isLoading, isLogin:state.isLogin, status:state.invalid})
 } 
+  
 
 
 export default connect(mapStateToProps)(App);

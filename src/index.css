@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 body {
@@ -9,6 +9,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+body::-webkit-scrollbar{
+  display: none;
 }
 
 code {
@@ -42,4 +45,7 @@ code {
 
 .selectpicker {
   width: 30%;
+}
+.dashboard-detail {
+  width: 50%;
 }

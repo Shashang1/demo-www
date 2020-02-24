@@ -1,10 +1,18 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import User from './user';
 
 
 const dashboard = (props)=>{  
   if(props.data){
-    return(<h1>Hello {props.data.username}</h1>)
+    return(
+      <center>
+        Hello {props.data.username}
+        <div className="dashboard-detail m-3 p-3">
+          <User userdata= {props.data.data} />
+        </div>
+      </center>
+    )
   }
 
   return (<Redirect to="/"/>)

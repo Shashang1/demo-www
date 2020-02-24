@@ -34,7 +34,7 @@ class Signup extends React.Component{
         username:this.state.username, password:this.state.password,
         fname:this.state.fname, lname:this.state.lname,
         mode:this.state.mode, worksAt:this.state.worksAt,
-        postion: this.state.position
+        position: this.state.position
       }
       axios.post(BKURL+"signup", payload)
       .then(()=>this.setState({Submit:true}))
@@ -49,7 +49,7 @@ class Signup extends React.Component{
     return(
       <div className="form-group">
         {this.state.Submit?(<Redirect to="/"/>):("")}
-        {this.state.invalidMsg!==""?(<p className="text-danger">{this.state.invalidMsg}</p>):(null)}
+        {this.state.invalidMsg!==""?(<p className=  "text-danger">{this.state.invalidMsg}</p>):(null)}
         Username:
         <input type="text" className="form-control" name="username" value= {this.state.username} onChange={this.handleUsernameChange}/>
         Password:

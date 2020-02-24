@@ -38,7 +38,7 @@ class Search extends React.Component{
     .then(res=>this.setState({data:res.data, isLoading:false,res:res.data}))
   }
   handleSearchBarChange = (e) =>{
-    this.setState({res:filterData(this.state.data,e.target.value)},()=>{console.log(this.state.data)})
+    this.setState({res:filterData(this.state.data,e.target.value)})
   }
 
   render(){
@@ -52,7 +52,7 @@ class Search extends React.Component{
         <ApplyBut onClick={this.handleOnApply}/>
         <SearchBar value={this.state.searchValue} onChange={this.handleSearchBarChange} />
         {this.state.isLoading?(<Loading />):("")}
-        {this.state.res?(<SearchResult data={this.state.res} />):(<h2>NO data</h2>)}
+        {this.state.res?(<SearchResult data={this.state.res} curUser = {this.props.userData}/>):(<h2>NO data</h2>)}
       </div>
       )
   }
