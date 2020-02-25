@@ -2,6 +2,7 @@ import React from 'react';
 import defaultImg from '../default.jpg'
 
 const User = (props) =>{
+  console.log(props.userdata)
   return(
     <div className="card">
       <img src={props.userdata.image||defaultImg} alt="User-pic" className="card-img-top"/>

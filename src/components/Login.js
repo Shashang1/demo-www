@@ -1,7 +1,7 @@
 import { useState } from "react"
 import React from 'react'
+import {TextField, Button, Box} from '@material-ui/core'
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 
 const Login =(props) =>{
   const [uname, setuname] = useState(""); 
@@ -19,24 +19,19 @@ const Login =(props) =>{
   }
 
   return (
-      <center className="mt-5">
-      <div className="loginform border border-success p-5">
-        <h3 className="text-success">Login Form</h3>
+      <center className="mt-5"  >
+      <Box className="loginform border border-primary p-5">
+        <h3 className="text-primary">Login Form</h3>
         {props.status?(<h6 className= "text-danger">Either username or password invalid</h6>):("")}
-        <label of= "username">Username:</label>
-        <input type="text" name="username" onChange={e=>unameChange(e)} value = {uname} className="form-control"/><br/>
-        <label of="password">Password:</label>
-        <input type="password" name="password" onChange={e=>passChange(e)} value={pass} className="form-control"/><br/>
-        {/* <input type="button" onClick={handleOnclick} value="Login" className="btn btn-success"/> */}
-        <Button variant="contained" color="primary" onClick={handleOnclick}>Login</Button>
+        <TextField label= "Username" onChange={e=>unameChange(e)} value={uname} className="form-control mt-4" autoFocus={true}/>
+        <TextField label= "Password" onChange={e=>passChange(e)} value={pass} className="form-control mt-4" type="password" />
+        <Button variant="contained" color="primary" onClick={handleOnclick} className="mt-5">Login</Button>
         <p className="mt-3">
           If you don't have account.
         </p>
-        <Link to="/signup">Sign up</Link>
-      </div>
-      
+        <Link to="/signup">Sign up</Link><br/>
+      </Box>
       </center>
-    
   )
 }
 

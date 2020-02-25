@@ -13,7 +13,8 @@ import UserInfo from './components/userInfo'
 import Seen from './components/Seen';
 import Signup from './components/signup';
 import AddImage from './components/AddImage'; 
-import Container from '@material-ui/core/Container'
+import { Container } from '@material-ui/core';
+
 
 function App(props) {
   if(props.isLoading){
@@ -49,7 +50,7 @@ function App(props) {
           {props.isLogin?(<Redirect to="/dashboard"/>):(<Signup />)}  
         </Route>
       </Router>
-      </Container>
+    </Container>
   )
 }
 
