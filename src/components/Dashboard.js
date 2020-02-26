@@ -7,7 +7,7 @@ const dashboard = (props)=>{
   if(props.data){
     return(
       <center>
-        Hello {props.data.username}
+        Hello {props.data.data.username}
         <div className="dashboard-detail m-3 p-3">
           <User userdata= {props.data.data} />
         </div>
