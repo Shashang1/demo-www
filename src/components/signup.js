@@ -36,7 +36,7 @@ class Signup extends React.Component{
         position: this.state.position
       }
       axios.post(BKURL+"signup", payload)
-      .then((res)=>{this.setState({status:res.data.status})})
+      .then((res)=>{this.setState({status:res.data.status, errMsg:res.data.msg})})
       .catch((err)=>console.log(err))
     }
 
@@ -48,7 +48,7 @@ class Signup extends React.Component{
     return(
       <div className="form-group">
         {this.state.status==="ok"?(<p className="text-success">Signup Successfull now please login</p>):("")}
-        {this.state.status==="bad"?(<p className= "text-danger">Username already exist</p>):("")}
+        {this.state.status==="bad"?(<p className= "text-danger">{this.state.errMsg}</p>):("")}
         {this.state.invalidMsg!==""?(<p className=  "text-danger">{this.state.invalidMsg}</p>):(null)}
         Username:
         <input type="text" className="form-control" name="username" value= {this.state.username} onChange={this.handleUsernameChange}/>
