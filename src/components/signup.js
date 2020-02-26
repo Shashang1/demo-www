@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { BKURL } from '../constants';
-import { Redirect } from 'react-router-dom';
-import {TextField} from '@material-ui/core'
 
 class Signup extends React.Component{
   constructor(props){
@@ -38,7 +36,7 @@ class Signup extends React.Component{
         position: this.state.position
       }
       axios.post(BKURL+"signup", payload)
-      .then(()=>this.setState({Submit:true}))
+      .then((res)=>{this.setState({status:res.data.status})})
       .catch((err)=>console.log(err))
     }
 
@@ -49,7 +47,8 @@ class Signup extends React.Component{
   render(){
     return(
       <div className="form-group">
-        {this.state.Submit?(<Redirect to="/"/>):("")}
+        {this.state.status==="ok"?(<p className="text-success">Signup Successfull now please login</p>):("")}
+        {this.state.status==="bad"?(<p className= "text-danger">Username already exist</p>):("")}
         {this.state.invalidMsg!==""?(<p className=  "text-danger">{this.state.invalidMsg}</p>):(null)}
         Username:
         <input type="text" className="form-control" name="username" value= {this.state.username} onChange={this.handleUsernameChange}/>
