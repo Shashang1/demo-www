@@ -1,6 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 import { BKURL } from '../constants';
+import { TextField, withStyles, Select, MenuItem, InputLabel,FormControl, Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+
+const useStyles = theme=>({
+  input:{
+    width:'80%',
+    marginTop:theme.spacing(2)
+  },
+  form:{
+    marginTop:theme.spacing(6),
+    padding:theme.spacing(2),
+    border:"1px solid #0275d8"
+  },
+  heading:{
+    color:"#0275d8"
+  }
+})
 
 class Signup extends React.Component{
   constructor(props){
@@ -46,42 +63,52 @@ class Signup extends React.Component{
 
   render(){
     return(
-      <div className="form-group">
+      <div className={this.props.classes.form}>
+        <center>
+        <h2 className={this.props.classes.heading}>Registration Form:</h2>
         {this.state.status==="ok"?(<p className="text-success">Signup Successfull now please login</p>):("")}
         {this.state.status==="bad"?(<p className= "text-danger">{this.state.errMsg}</p>):("")}
         {this.state.invalidMsg!==""?(<p className=  "text-danger">{this.state.invalidMsg}</p>):(null)}
-        Username:
-        <input type="text" className="form-control" name="username" value= {this.state.username} onChange={this.handleUsernameChange}/>
-        Password:
-        <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handlePassChange} />
-        Confirm Password:
-        <input type="password" className="form-control" name="confirm" value={this.state.confirm} onChange={this.handleConfirmChange} />
-        First Name:
-        <input type="text" className="form-control" name="fname" value={this.state.fname} onChange={this.handlefnameChange}/>
-        Last Name:
-        <input type="text" className="form-control" name="lname" value={this.state.lname} onChange={this.handlelnameChange}/>
-        Mode:
-        <select name="mode" className="form-control" defaultValue="none" onChange={this.handleModeChange}>
-          <option value ="none" disabled={true}>None</option>
-          <option value="normal">Normal</option>
-          <option value="ghost">Ghost</option>
-        </select>
-        Works At:
-        <select name="worksAt" className="form-control" defaultValue="none" onChange={this.handleWorksAtChange}>
-          <option value ="none" disabled={true}>None</option>
-          <option value="Bestpeers">Bestpeers</option>
-          <option value="Stark Industries">Stark Industries</option>
-        </select>
-        Position:
-        <select name="position" className="form-control" defaultValue="none" onChange={this.handlePositionChange}>
-          <option value ="none" disabled={true}>None</option>
-          <option value="Software Trainee">Software Trainee</option>
-          <option value="Software developer">Software Developer</option>
-        </select>
-        <input type="submit" className="btn btn-success form-control" onClick={this.handleButtonClick} value="Signup"/>
+        
+        <TextField label= "Username" onChange={this.handleUsernameChange} value={this.state.username} className={this.props.classes.input} autoFocus={true}/>
+        <TextField label= "Password" onChange={this.handlePassChange} value={this.state.password} className={this.props.classes.input} type="password" />
+        <TextField label= "Confirm" onChange={this.handleConfirmChange} value={this.state.confirm} className={this.props.classes.input} type="password" />
+        <TextField label= "First Name" onChange={this.handlefnameChange} value={this.state.fname} className={this.props.classes.input} />
+        <TextField label= "Last Name" onChange={this.handlelnameChange} value={this.state.lname} className={this.props.classes.input} />
+        
+        <FormControl className={this.props.classes.input}>
+        <InputLabel id="mode-requried">Mode</InputLabel>
+        <Select labelId= "mode-requried" id= "mode" value={this.state.mode} onChange={this.handleModeChange}>
+          <MenuItem value= "normal">Normal</MenuItem>
+          <MenuItem value= "ghost">Ghost</MenuItem>
+        </Select>
+        </FormControl>
+
+        <FormControl className={this.props.classes.input}>
+        <InputLabel id="worksat">Works At</InputLabel>
+        <Select labelId= "worksat" value={this.state.worksAt} onChange={this.handleWorksAtChange}>
+          <MenuItem value= "Bestpeers">Bestpeers</MenuItem>
+          <MenuItem value= "Stark Industries">Stark Industries</MenuItem>
+        </Select>
+        </FormControl>
+
+        <FormControl className={this.props.classes.input}>
+        <InputLabel id="position">Position</InputLabel>
+        <Select labelId= "position" value={this.state.position} onChange={this.handlePositionChange}>
+          <MenuItem value= "Software Trainee">Software Trainee</MenuItem>
+          <MenuItem value= "Software developer">Software Developer</MenuItem>
+        </Select>
+        </FormControl>
+        <Button variant="contained" color="primary" onClick={this.handleButtonClick} className={this.props.classes.input}>Signup</Button>
+
+        <p className ={this.props.classes.input}>
+          If you already have an account.
+        </p>
+        <Link to="/">Login</Link>
+        </center>
       </div>
     )
   }
 }
 
-export default Signup;
+export default withStyles(useStyles)(Signup);

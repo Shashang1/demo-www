@@ -14,7 +14,7 @@ class History extends React.Component{
   componentDidMount(){
     if (this.props.data){
     axios.get(BKURL+"history",{headers:{'Authorization':'Bearer '+this.props.data.token}})
-    .then((data)=>{this.setState({data:data })})
+    .then((data)=>{this.setState({data:data})})
     }
   }
 
