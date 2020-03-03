@@ -1,8 +1,17 @@
+ 
 import React from 'react';
+import { Button, makeStyles } from '@material-ui/core';
 
+const useStyles = makeStyles(theme => ({
+  button:{
+    margin:theme.spacing(2),
+    width:"10%"
+  }
+}))
 const ApplyBut = (props) =>{
+  const classes = useStyles()
   return (
-    <button type="button" className="btn btn-success m-1" onClick={props.onClick}>Apply</button>
+    <Button variant="contained" onClick={props.onClick} color="primary" className= {classes.button}>Apply</Button>
   )
 }
 

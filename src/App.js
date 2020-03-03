@@ -24,7 +24,7 @@ function App(props) {
   return (
     <Container maxWidth="lg">
       <Router>
-        <Header isLogin={props.isLogin}/>
+        <Header isLogin={props.isLogin} userData={props.userData}/>
         <CookieMsg />
         <Route path= "/" exact>
           {props.isLogin?(<Redirect to="/dashboard"/>):("")}
@@ -55,7 +55,7 @@ function App(props) {
 }
 
 const mapStateToProps = (state)=>{
-  return ({isLoading:state.isLoading, isLogin:state.isLogin, status:state.invalid})
+  return ({isLoading:state.isLoading, isLogin:state.isLogin, status:state.invalid, userData:state.userData})
 } 
   
 

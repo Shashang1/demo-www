@@ -1,8 +1,17 @@
 import React from "react";
+import { TextField, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(theme=>({
+  input:{
+    width:"90%",
+    margin:theme.spacing(1)
+  }
+}))
 
 const SearchBar = (props)=>{
+  const classes = useStyles()
   return (
-    <input type="text" className="m-1 p-1" onChange={props.onChange} value={props.value} placeholder="search..."/>
+    <TextField label="Search" onChange={props.onChange} value={props.value} className={classes.input}/>
   )
 }
 

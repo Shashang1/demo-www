@@ -1,54 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logout from '../containers/Logout';
-import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, makeStyles } from '@material-ui/core';
+import { AppBar, Toolbar, makeStyles, IconButton, Typography, SwipeableDrawer, Divider } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu'
+import LogedInSidebarItem from './logedInSidebarItem';
+import LogedOutSidebarItem from './logedOutSidebarItem';
 
 
 const useStyles = makeStyles(theme=>({
   link:{
-    margin: theme.spacing(3),
+    margin: theme.spacing(1),
     '&:hover':{
       color:'grey',
       textDecoration:"none"
     },
-    color:'white',
-    // eslint-disable-next-line
-    ['@media (max-width:1020px)']:{
-      margin:theme.spacing(2)
-    },
-    // eslint-disable-next-line
-    ['@media (max-width:600px)']:{
-      margin:theme.spacing(0.5)
-    }
+    color:"black",
+    textDecoration:'none'
   },
   appbar:{
     width:'100%'
   },
-  logout:{
-    marginRight:theme.spacing(1)
+  button:{
+    marginRight:10,
+    marginLeft:"auto"
+  },
+  sidebar:{
+    padding:theme.spacing(1),
+    width:"250px"
   }
 }))
 
 const Header = (props)=> {
   const classes = useStyles();
-  
+  const [open, setOpen] = useState(false);
   
   return (
     <div >
-      {props.isLogin?(
+      
+        <>
         <AppBar position="static" className={classes.appbar}>
           <Toolbar>
-            <Link to="/" className={classes.link}>Dashboard</Link>
-            <Link className= {classes.link} to="/history">History</Link>
-            <Link className= {classes.link} to="/search">Search</Link>
-            <Link className= {classes.link} to="/upload">Upload picture</Link>
-            <Link className= {classes.link} to="/seen">Profile seen</Link>
-            <Logout className="classes.logout"/>
+            <IconButton edge= "start" color="inherit" aria-label="menu"  onClick={()=>setOpen(true)}>
+              <MenuIcon/>
+            </IconButton>
+            <Typography variant="h6">
+              My Website
+            </Typography>
+            {props.isLogin?(<section className={classes.button}>
+                <Logout/>
+              </section>
+            ):("")}
           </Toolbar>
         </AppBar>
-      ):("")}
+        <SwipeableDrawer anchor="left" open= {open} 
+        onClose ={()=>setOpen(false)}
+        onOpen ={()=>setOpen(true)}>
+          <div className= {classes.sidebar}
+          role="presentation"
+          onClick = {()=>setOpen(false)}
+          onKeyDown = {()=>setOpen(false)}
+          >
+            <h2>My Website</h2>
+            <Divider />
+            {props.isLogin?(<LogedInSidebarItem classes = {classes}/>):(<LogedOutSidebarItem classes= {classes}/>)}
+          </div>
+        </SwipeableDrawer>
+        </>
     </div>
   )
 }
 
-export default Header;
+export default Header;  

@@ -5,11 +5,10 @@ import Loading from './loading';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import SearchResult from './SearchResult';
-import FilterWorksat from './FilterWorksat';
-import FilterPostion from './filterPostition';
 import ApplyBut from './applyBut';
 import SearchBar from './searchBar';
 import filterData from '../containers/filterData'
+import SelectOption from './selectOption';
 
 class Search extends React.Component{
   constructor(props){
@@ -47,8 +46,8 @@ class Search extends React.Component{
     }
     return (
       <div>
-        <FilterWorksat onChange={this.handleOnChangeFilterWork}/>
-        <FilterPostion onChange={this.handleOnChangePosition}/>
+        <SelectOption onChange={this.handleOnChangeFilterWork} name="Works At" id="worksAt" data={["All", "Bestpeers", "Stark Industries"]}/>
+        <SelectOption onChange={this.handleOnChangePosition} name="Position" id="position" data={["All", "Software Trainee", "Software developer"]}/>
         <ApplyBut onClick={this.handleOnApply}/>
         <SearchBar value={this.state.searchValue} onChange={this.handleSearchBarChange} />
         {this.state.isLoading?(<Loading />):("")}
