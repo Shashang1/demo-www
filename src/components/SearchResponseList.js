@@ -31,16 +31,8 @@ const SearchResponseList = (props) => {
   const classes = useStyles()  
 
   return (  
-    // <div className="media border p-2">
-    //   <img src={props.item.image||defaultImg} alt="userImg" width="10%" className="border"/>
-    //   <div className="media-body p-2 m-1">
-    //     <h5><Link to={`user/${props.item.userId}`} >{ props.item.username}</Link></h5>
-    //     <p>Name: {props.item.fname} {props.item.lname}</p>
-    //     {props.item.position} at {props.item.worksAt}
-    //   </div>
-    // </div>
     <Link to={`user/${props.item.userId}`}>
-      <Card className={classes.card }>
+      <Card className={classes.card }  id={props.index+"-button"}>
         <CardActionArea>
           <CardMedia
           className= {classes.media}

@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme=>({
 const SearchBar = (props)=>{
   const classes = useStyles()
   return (
-    <TextField label="Search" onChange={props.onChange} value={props.value} className={classes.input}/>
+    <TextField label="Search" onChange={props.onChange} value={props.value} className={classes.input} id="search-bar"/>
   )
 }
 

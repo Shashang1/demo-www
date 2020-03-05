@@ -50,9 +50,9 @@ const Login =(props) =>{
       <Box className={clases.form}>
         <h3 className={clases.heading}>Login Form</h3>
         {props.status?(<h6 className={clases.invalid}>Either username or password invalid</h6>):("")}
-        <TextField label= "Username" onChange={e=>unameChange(e)} value={uname} className={clases.input} autoFocus={true}/>
-        <TextField label= "Password" onChange={e=>passChange(e)} value={pass} className={clases.input} type="password" />
-        <Button variant="contained" color="primary" onClick={handleOnclick} className={clases.margin6}>Login</Button>
+        <TextField label= "Username" onChange={e=>unameChange(e)} value={uname} className={clases.input} autoFocus={true} id="username"/>
+        <TextField label= "Password" onChange={e=>passChange(e)} value={pass} className={clases.input} type="password" id="password"/>
+        <Button variant="contained" color="primary" onClick={handleOnclick} className={clases.margin6} id="loginButton">Login</Button>
         <p className="mt-3">
           If you don't have account.
         </p>    

@@ -15,7 +15,6 @@ import Signup from './components/signup';
 import AddImage from './components/AddImage'; 
 import { Container } from '@material-ui/core';
 
-
 function App(props) {
   if(props.isLoading){
     return (<Loading />)
@@ -27,7 +26,7 @@ function App(props) {
         <Header isLogin={props.isLogin} userData={props.userData}/>
         <CookieMsg />
         <Route path= "/" exact>
-          {props.isLogin?(<Redirect to="/dashboard"/>):("")}
+          {props.isLogin && <Redirect to="/dashboard"/>}
           <Login status={props.status}/>
         </Route>
         <Route path= "/dashboard" exact>

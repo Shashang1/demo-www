@@ -27,13 +27,13 @@ const User = (props) =>{
           title= {props.userdata.username}
           />
           <CardContent>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h5" component="h2" id={props.userdata.username+"-username"}>
               {props.userdata.username}
             </Typography>
             <Typography variant="h6" color="textSecondary" component="h3">
               {props.userdata.fname+" "+props.userdata.lname}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="h2">
+            <Typography variant="body2" color="textSecondary" component="h2" id={props.userdata.fname+"-position"}>
               {props.userdata.position+" at "+props.userdata.worksAt}
             </Typography>
           </CardContent>

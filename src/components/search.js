@@ -46,8 +46,8 @@ class Search extends React.Component{
     }
     return (
       <div>
-        <SelectOption onChange={this.handleOnChangeFilterWork} name="Works At" id="worksAt" data={["All", "Bestpeers", "Stark Industries"]}/>
-        <SelectOption onChange={this.handleOnChangePosition} name="Position" id="position" data={["All", "Software Trainee", "Software developer"]}/>
+        <SelectOption onChange={this.handleOnChangeFilterWork} name="Works At" id="worksAt" data={["All", "Bestpeers", "Stark Industries"]} value={this.state.worksAt}/>
+        <SelectOption onChange={this.handleOnChangePosition} name="Position" id="position" data={["All", "Software Trainee", "Software developer"]} value={this.state.position}/>
         <ApplyBut onClick={this.handleOnApply}/>
         <SearchBar value={this.state.searchValue} onChange={this.handleSearchBarChange} />
         {this.state.isLoading?(<Loading />):("")}

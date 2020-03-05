@@ -15,8 +15,8 @@ const SeenList = (props) => {
   return (
     <List>
       {props.seenData.map((item,index) =>(
-        <ListItem><Link to={`/user/${item.userId}`} key={index} className={classes.link}>
-          {item.username} visited your profile at {new Date(item.date).toLocaleString()}
+        <ListItem key={index}><Link to={`/user/${item.userId}`} className={classes.link +" list"}>
+          {item.username} visited your profile on {new Date(item.date).toLocaleString()}
         </Link></ListItem>
       ))}
     </List>

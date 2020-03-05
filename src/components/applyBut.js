@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
 const ApplyBut = (props) =>{
   const classes = useStyles()
   return (
-    <Button variant="contained" onClick={props.onClick} color="primary" className= {classes.button}>Apply</Button>
+    <Button variant="contained" onClick={props.onClick} color="primary" className= {classes.button} id="applyButton">Apply</Button>
   )
 }
 
