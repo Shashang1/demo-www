@@ -18,7 +18,7 @@ const ShowSeen = () =>{
           <Divider />
           {props.isLogin?(<LogedInSidebarItem classes = {classes}/>):(<LogedOutSidebarItem classes= {classes}/>)}
       </div>
-    </SwipeableDrawer>
+    </SwipeableDrawer>  
   )
 }
 export default ShowSeen;

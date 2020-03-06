@@ -10,11 +10,11 @@ const useStyles = makeStyles(theme=>({
 const SelectOption = (props) => {
   const classes = useStyles()
   return (
-    <FormControl className= {classes.select}>
+    <FormControl className= {props.class?props.class:classes.select}>
       <InputLabel id={props.id}>{props.name}</InputLabel>
       <Select labelId={props.id} onChange={props.onChange} value={props.value} id={props.id+"-select"}>
         {props.data.map((item, index)=>(<MenuItem key={index}value={item} id={"list-"+item.split(" ").join("")}>{item}</MenuItem>))}
-      </Select>
+      </Select> 
     </FormControl>
   )
 }

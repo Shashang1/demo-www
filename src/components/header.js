@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logout from '../containers/Logout';
+import Logout from '../containers/logout';
 import { AppBar, Toolbar, makeStyles, IconButton, Typography, SwipeableDrawer, Divider } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu'
 import LogedInSidebarItem from './logedInSidebarItem';

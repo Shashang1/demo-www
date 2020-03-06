@@ -4,7 +4,7 @@ import { BKURL } from '../constants';
 import Loading from './loading';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import SearchResult from './SearchResult';
+import SearchResult from './searchResult';
 import ApplyBut from './applyBut';
 import SearchBar from './searchBar';
 import filterData from '../containers/filterData'

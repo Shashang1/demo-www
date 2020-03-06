@@ -14,7 +14,10 @@ const CookieMsg = () => {
     <div>
       {cookieMsg?(""):(
       <Snackbar open={true}>
-        <Alert severity="info" action = {<Button color="inherit" size="small" onClick={handleClick}>Allow</Button>}>
+        <Alert severity="info" action = {
+          <Button color="inherit" size="small" onClick={handleClick} id="cookieButton">
+          Allow
+          </Button>}>
           This website uses cookies in order to offer you most relavent information.
           Please Allow  cookies for optimal performance.
         </Alert>

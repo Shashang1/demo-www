@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchResponseList from './SearchResponseList';
+import SearchResponseList from './searchResponseList';
 
 const SearchResult = (props) => {
   return (

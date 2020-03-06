@@ -4,8 +4,8 @@ import {List, ListItem} from '@material-ui/core'
 
 const LogedOutSidebarItem = ({classes}) => (
   <List>
-    <ListItem><Link to="/" className= {classes.link}>Login</Link></ListItem>
-    <ListItem><Link to="/signup" className= {classes.link}>Signup</Link></ListItem>
+    <ListItem><Link to="/" className= {classes.link} id="login-link">Login</Link></ListItem>
+    <ListItem><Link to="/signup" className= {classes.link} id="signup-link">Signup</Link></ListItem>
   </List>
 )
 

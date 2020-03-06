@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import dashboard from "../components/Dashboard"
+import dashboard from "../components/dashboard"
 
 
 

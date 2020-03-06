@@ -7,7 +7,6 @@ let driver = null;
 exports.buildDriver = async() => {
   if(!driver){
     driver = new Builder().forBrowser('chrome').build();
-    await login(driver, cred)
     await driver.manage().window().maximize()
   }
   return driver;

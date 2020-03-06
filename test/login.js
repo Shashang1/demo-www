@@ -1,17 +1,30 @@
 const chai = require('chai')
 const {buildDriver} = require('./utility/buildDriver')
 const {By, until} = require('selenium-webdriver')
-const search = require('./utility/search')
+const search = require('./utility/filter')
+const {login, cred } = require('./utility/login')
+const {logout} = require('./utility/logout')
+const {handleAfterEach} = require('./utility/afterEach')
 
-
-describe("Login", ()=>{
+describe("Full Testing", ()=>{
   before(async()=>{
     driver = await buildDriver()
   })
+  it('login', async()=>{
+    await login(driver, cred)
+    await driver.wait(until.urlIs('http://localhost:3000/dashboard'),2000)
+    await driver.sleep(500)
+  })
+  // afterEach(async()=> await handleAfterEach(driver))
   it('dash-user-check', async()=>{
     await driver.wait(until.elementLocated(By.id("KhalDrogo-username")))
     const data = await driver.findElement(By.id("KhalDrogo-username")).getText()
     chai.expect(data).to.be.equal("KhalDrogo")
+  })
+  it("Cookie message check", async()=>{
+    await driver.wait(until.elementLocated(By.id(("cookieButton"))))
+    await driver.findElement(By.id("cookieButton")).click()
+    await driver.sleep(500)
   })
   it('history-check', async()=>{
     await driver.wait(until.elementLocated(By.id("menuButton")),2000)
@@ -45,7 +58,7 @@ describe("Login", ()=>{
     let data = await driver.findElement(By.id("Shubham-position")).getText()
     data = data.split(" ")
     let works = data[data.length-1]
-    chai.expect(works).to.be.equal("Bestpeers")
+    await chai.expect(works).to.be.equal("Bestpeers")
   })
 
   it('seen-check', async()=>{
@@ -56,6 +69,8 @@ describe("Login", ()=>{
     await driver.findElement(By.id("seen-link")).click()
     await driver.sleep(100)
     await driver.wait(until.elementLocated(By.className("list")),2000)
+    const list = await driver.findElements(By.className("list"))
+    chai.expect(list.length).to.be.equal(12)
     const data = (await driver.findElement(By.className("list")).getText()).split(" ")[0]
     await driver.sleep(500)
     await driver.findElement(By.className("list")).click()
@@ -65,9 +80,7 @@ describe("Login", ()=>{
   })
 
   it('logout', async()=>{
-    await  driver.sleep(500)
-    await driver.wait(until.elementLocated(By.id("logout")))
-    await driver.findElement(By.id("logout")).click()
+    await logout(driver);
     await driver.wait(until.urlIs("http://localhost:3000/"))
   })
 })
