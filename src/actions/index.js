@@ -1,4 +1,4 @@
-import { SET_AUTH, REMOVE_AUTH} from "../constants"
+import { SET_AUTH, REMOVE_AUTH, SET_HISTORY,GET_HISTORY} from "../constants"
 
  
   
@@ -12,6 +12,16 @@ const removeAuth = (token) =>({
   token:token
 })
 
-export {getAuth, removeAuth}
+const getHistory = (token) =>({
+  type:GET_HISTORY,
+  token:token
+})
+const setHistory = (loginHistory, logoutHistory) =>({
+  type:SET_HISTORY,
+  loginHistory,
+  logoutHistory
+})
+
+export {getAuth, removeAuth, setHistory, getHistory}
 
   

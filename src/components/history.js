@@ -4,23 +4,36 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 import Loading from './loading';
 import ShowHistory from './showHistory';
+import DatePicker from './datePciker'
+import ApplyBut from './applyBut';
+
 
 class History extends React.Component{
   constructor(){
     super()
-    this.state = {data:[]}
+    this.state = {data:[],date:""}
   }
 
-  componentDidMount(){
-    if (this.props.data){
-    axios.get(BKURL+"history",{headers:{'Authorization':'Bearer '+this.props.data.token}})
+  onDateChange = (e) =>{
+    this.setState({date:new Date(e.target.value).toLocaleDateString()})
+  }
+  onDateClick = () =>{
+    axios.get(BKURL+"history",{params:{date:this.state.date},headers:{'Authorization':'Bearer '+this.props.data.token}})
     .then((data)=>{this.setState({data:data})})
-    }
   }
 
   render(){
-    if(this.props.data && this.state.data.data){
-      return(<ShowHistory data= {this.state.data.data}/>)
+    if(this.props.data){
+      return(
+        <div>
+          <DatePicker onChange={this.onDateChange} onClick={this.onDateClick}/>
+          <ApplyBut onClick={this.onDateClick} />
+          {this.state.data.data && <>
+            <ShowHistory history= "login" data= {this.state.data.data.loginhistory}/>
+            <ShowHistory history= "logout" data= {this.state.data.data.logoutHistory}/>
+          </>}
+        </div>  
+      )
     }
     else if(this.props.data){
       return(<Loading/>)

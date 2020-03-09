@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.nyc_output
+/.nyc_output
 .pnp.js
 yarn.lock
 package-lock.json

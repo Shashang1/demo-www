@@ -4,7 +4,6 @@ const {By, until} = require('selenium-webdriver')
 const search = require('./utility/filter')
 const {login, cred } = require('./utility/login')
 const {logout} = require('./utility/logout')
-const {handleAfterEach} = require('./utility/afterEach')
 
 describe("Full Testing", ()=>{
   before(async()=>{
@@ -15,12 +14,13 @@ describe("Full Testing", ()=>{
     await driver.wait(until.urlIs('http://localhost:3000/dashboard'),2000)
     await driver.sleep(500)
   })
-  // afterEach(async()=> await handleAfterEach(driver))
+
   it('dash-user-check', async()=>{
-    await driver.wait(until.elementLocated(By.id("KhalDrogo-username")))
-    const data = await driver.findElement(By.id("KhalDrogo-username")).getText()
-    chai.expect(data).to.be.equal("KhalDrogo")
+    await driver.wait(until.elementLocated(By.id(cred.username+"-username")))
+    const data = await driver.findElement(By.id(cred.username+"-username")).getText()
+    chai.expect(data).to.be.equal(cred.username)
   })
+
   it("Cookie message check", async()=>{
     await driver.wait(until.elementLocated(By.id(("cookieButton"))))
     await driver.findElement(By.id("cookieButton")).click()
@@ -32,11 +32,20 @@ describe("Full Testing", ()=>{
     await driver.sleep(1000)
     await driver.wait(until.elementLocated(By.id("history-link")))
     await driver.findElement(By.id("history-link")).click()
-    await driver.wait(until.elementLocated(By.className("historylist")),2000)
-    const data = await driver.findElement(By.className("historylist")).getText()
     await driver.sleep(500)
-    chai.expect(data).to.be.not.equal("")
+    await driver.wait(until.elementLocated(By.id("date"),2000))
+    await driver.findElement(By.id("date")).sendKeys("09032020")
+    await driver.sleep(500)
+    await driver.findElement(By.id("applyButton")).click()
+    await driver.wait(until.elementLocated(By.className("loginhistory-item")),2000)
+    const login = await driver.findElement(By.className("loginhistory-item")).getText()
+    chai.expect(new Date(login).toLocaleDateString()).to.be.equal("03/09/2020")
+    await driver.wait(until.elementLocated(By.className("logouthistory-item")),2000)
+    const logout = await driver.findElement(By.className("logouthistory-item")).getText()
+    await driver.sleep(500)
+    chai.expect(new Date(logout).toLocaleDateString()).to.be.equal("03/09/2020")
   })
+
   it('search-check', async()=>{
     await driver.wait(until.elementLocated(By.id("menuButton")),2000)
     await driver.findElement(By.id("menuButton")).click()
