@@ -15,11 +15,13 @@ class History extends React.Component{
   }
 
   onDateChange = (e) =>{
-    this.setState({date:new Date(e.target.value).toLocaleDateString()})
+    this.setState({date:new Date(e.target.value)})
   }
   onDateClick = () =>{
-    axios.get(BKURL+"history",{params:{date:this.state.date},headers:{'Authorization':'Bearer '+this.props.data.token}})
+    if(this.state.date){
+      axios.get(BKURL+"history",{params:{date:this.state.date},headers:{'Authorization':'Bearer '+this.props.data.token}})
     .then((data)=>{this.setState({data:data})})
+    }
   }
 
   render(){
