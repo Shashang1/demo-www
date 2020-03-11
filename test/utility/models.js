@@ -13,7 +13,6 @@ var detailSchema = new schema({
 })
 exports.detailModel = mongoose.model("detailModel", detailSchema, "details")
 
-
 var historySchema = new schema({
   userId:{type:schema.Types.ObjectId, required:true, unique:true},
   loginHistory:{type:Array},
