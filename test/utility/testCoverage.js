@@ -12,3 +12,4 @@ exports.writeCoverageReportToFile = function (coverageInfo) {
    });
   });
 };
+// comment
